@@ -79,6 +79,19 @@
         .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:8px;background:linear-gradient(90deg,var(--red),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 
         @media(max-width:900px){ .nav-links{display:none;} }
+
+        /* Estilo para el aviso de éxito */
+        .alerta-exito {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            padding: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -100,6 +113,8 @@
 
     <div class="main">
         <div class="auth-wrap">
+            <div id="mensajeExito" class="alerta-exito">¡REGISTRO EXITOSO! YA PUEDES INICIAR SESIÓN</div>
+            
             <div class="auth-tabs">
                 <button class="tab-btn active" id="tabLogin" onclick="switchTab('login')">Iniciar Sesión</button>
                 <button class="tab-btn" id="tabRegister" onclick="switchTab('register')">Registrarse</button>
@@ -133,18 +148,15 @@
 
                     <div class="form-group">
                         <label>Nombre / Gamertag *</label>
-                        <!-- 'name="nombre"' debe coincidir con el $_POST['nombre'] del PHP -->
                         <input type="text" name="nombre" placeholder="Tu nombre o alias" required>
                     </div>
                     <div class="form-group">
                         <label>Correo Electrónico *</label>
-                        <!-- 'name="email"' debe coincidir con el $_POST['email'] del PHP -->
                         <input type="email" name="email" placeholder="tu@correo.com" required>
                     </div>
                     <div class="form-group">
                         <label>Contraseña *</label>
                         <div class="input-wrap">
-                            <!-- 'name="password"' debe coincidir con el $_POST['password'] del PHP -->
                             <input type="password" id="rPass" name="password" placeholder="Mínimo 8 caracteres" minlength="8" required>
                             <button type="button" class="toggle-pw" onclick="togglePw('rPass',this)">👁</button>
                         </div>
@@ -161,12 +173,14 @@
     </footer>
 
     <script>
+        // LÓGICA DEL CURSOR
         const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
         document.addEventListener('mousemove',e=>{
             cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';
             ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';
         });
 
+        // CAMBIO DE PESTAÑAS
         function switchTab(tab){
             document.getElementById('loginSection').classList.remove('active');
             document.getElementById('registerSection').classList.remove('active');
@@ -182,10 +196,17 @@
             }
         }
 
+        // VER/OCULTAR CONTRASEÑA
         function togglePw(id,btn){
             const inp=document.getElementById(id);
             if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}
             else{inp.type='password';btn.textContent='👁';}
+        }
+
+        // DETECTAR ÉXITO EN REGISTRO (Viene del PHP)
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('registro') === 'exito') {
+            document.getElementById('mensajeExito').style.display = 'block';
         }
 
         window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>50));
