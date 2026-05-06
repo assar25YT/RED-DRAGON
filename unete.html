@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RED DRAGON FC — Únete al Club</title>
+<link rel="icon" href="imagenes/MANDO.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#ff1a1a;--orange:#ff6500;--red-glow:rgba(255,26,26,0.5);--orange-glow:rgba(255,101,0,0.4);--bg:#050100;--bg2:#0c0200;--border:rgba(255,80,0,0.12);--text:#fff5ef;--muted:#7a5545;--grid:rgba(255,30,0,0.05);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;cursor:none;min-height:100vh;display:flex;flex-direction:column;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;z-index:0;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--red);border-radius:50%;pointer-events:none;z-index:9999;box-shadow:0 0 18px var(--red-glow);transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(255,26,26,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.12s ease;}
+.orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;animation:orbFloat 9s ease-in-out infinite;}
+.orb1{width:500px;height:500px;background:rgba(255,26,26,0.08);top:-100px;left:-100px;}
+.orb2{width:450px;height:450px;background:rgba(255,100,0,0.07);bottom:-80px;right:-80px;animation-delay:-4.5s;}
+@keyframes orbFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-40px);}}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:76px;background:rgba(5,1,0,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:all 0.4s;}
+nav.scrolled{background:rgba(5,1,0,0.98);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:6px;background:linear-gradient(90deg,var(--red),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;line-height:1;}
+.nav-logo sub{display:block;font-size:0.5rem;letter-spacing:8px;-webkit-text-fill-color:rgba(255,100,0,0.6);margin-top:-3px;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:0.83rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--red);transition:width 0.3s;}
+.nav-links a:hover{color:var(--text);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{background:var(--red)!important;color:#000!important;padding:9px 22px!important;border-radius:2px;font-weight:700!important;box-shadow:0 0 18px var(--red-glow);}
+.nav-cta::after{display:none!important;}
+.nav-icon-link{display:flex;align-items:center;padding:6px!important;border:1px solid var(--border)!important;border-radius:50%!important;color:var(--muted)!important;transition:all 0.3s!important;}
+.nav-icon-link:hover{border-color:var(--red)!important;color:var(--text)!important;box-shadow:0 0 14px rgba(255,26,26,0.3)!important;}
+.nav-icon-link::after{display:none!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--red);}
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:9rem 5% 6rem;position:relative;z-index:1;}
+.content{width:100%;max-width:1060px;display:flex;gap:5rem;align-items:center;flex-wrap:wrap;}
+.join-info{flex:1;min-width:260px;}
+.badge{display:inline-flex;align-items:center;gap:8px;font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--orange);border:1px solid rgba(255,101,0,0.3);padding:6px 16px;margin-bottom:1.5rem;}
+.pulse-dot{width:6px;height:6px;background:var(--red);border-radius:50%;box-shadow:0 0 8px var(--red);animation:blink 1.5s infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.1;}}
+.join-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,8vw,6.5rem);line-height:0.88;letter-spacing:4px;margin-bottom:1.5rem;}
+.jt1{display:block;background:linear-gradient(90deg,var(--red),#fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 24px rgba(255,26,26,0.4));}
+.jt2{display:block;background:linear-gradient(90deg,var(--orange),var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.join-desc{color:var(--muted);font-size:1rem;line-height:1.8;margin-bottom:2rem;}
+.req-list{list-style:none;display:flex;flex-direction:column;gap:0.7rem;}
+.req-item{display:flex;align-items:center;gap:12px;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;letter-spacing:1px;color:var(--muted);font-weight:600;}
+.req-icon{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 8px var(--red);flex-shrink:0;}
+.form-wrap{flex:1;min-width:300px;}
+.glass-form{background:rgba(255,255,255,0.02);border:1px solid var(--border);padding:2.5rem;backdrop-filter:blur(20px);position:relative;overflow:hidden;}
+.glass-form::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--orange));}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:4px;margin-bottom:0.4rem;background:linear-gradient(90deg,#fff,var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.form-subtitle{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-bottom:2rem;}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:6px;}
+.form-group input,.form-group select,.form-group textarea{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.95rem;padding:12px 14px;border-radius:2px;outline:none;transition:all 0.3s;appearance:none;}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--red);background:rgba(255,26,26,0.04);box-shadow:0 0 16px rgba(255,26,26,0.1);}
+.form-group input::placeholder{color:var(--muted);}
+.form-group select option{background:#1a0800;color:var(--text);}
+.form-group textarea{resize:none;height:80px;}
+.btn-submit{width:100%;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--red),var(--orange));color:#000;border:none;padding:16px;border-radius:2px;cursor:pointer;box-shadow:0 0 30px rgba(255,26,26,0.25);transition:all 0.3s;margin-top:0.5rem;}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 0 50px rgba(255,26,26,0.4);filter:brightness(1.1);}
+.btn-submit:disabled{opacity:0.7;cursor:default;transform:none;}
+.success-msg{display:none;text-align:center;padding:3rem 1rem;}
+.success-icon{font-size:3rem;margin-bottom:1rem;}
+.success-title{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:3px;background:linear-gradient(90deg,var(--red),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.success-sub{font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:10px;}
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:3.5rem 5%;display:flex;flex-direction:column;align-items:center;gap:2rem;background:rgba(5,1,0,0.7);}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:8px;background:linear-gradient(90deg,var(--red),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.footer-socials{display:flex;gap:1rem;}
+.social-link{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--border);border-radius:3px;color:var(--muted);text-decoration:none;transition:all 0.3s;}
+.social-link:hover{border-color:var(--red);color:#fff;box-shadow:0 0 18px rgba(255,26,26,0.3);transform:translateY(-3px);}
+.footer-copy{font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;opacity:0.5;}
+@media(max-width:900px){
+  .nav-links{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;background:rgba(5,1,0,0.98);padding:2rem 5%;gap:1.5rem;border-bottom:1px solid var(--border);}
+  .nav-links.open{display:flex;}
+  .hamburger{display:flex;}
+  .content{flex-direction:column;gap:3rem;}
+  .glass-form{padding:2rem 1.5rem;}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">RED DRAGON<sub>FC25 CLUB</sub></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="jugadores.html">Jugadores</a></li>
+    <li><a href="index.html#formacion">Formación</a></li>
+    <li><a href="galeria.html">Galería</a></li>
+    <li><a href="login.html" class="nav-icon-link" title="Mi Cuenta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></a></li>
+    <li><a href="unete.html" class="nav-cta">Únete</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+</nav>
+
+<div class="main">
+  <div class="content">
+    <div class="join-info">
+      <div class="badge"><div class="pulse-dot"></div>Reclutamiento Abierto</div>
+      <h1 class="join-title">
+        <span class="jt1">Únete</span>
+        <span class="jt2">al Club</span>
+      </h1>
+      <p class="join-desc">El Red Dragon busca jugadores de élite con mentalidad ganadora. Si crees que tienes lo que se necesita para competir al máximo nivel en FIFA 25, este es tu momento. Sin excusas. Sin rendirse.</p>
+      <ul class="req-list">
+        <li class="req-item"><div class="req-icon"></div>División 1 o Elite en FUT Champions</li>
+        <li class="req-item"><div class="req-icon"></div>Disponibilidad mínima 3 noches/semana</li>
+        <li class="req-item"><div class="req-icon"></div>Mentalidad competitiva y de equipo</li>
+        <li class="req-item"><div class="req-icon"></div>PS5, Xbox Series X o PC actualizado</li>
+        <li class="req-item"><div class="req-icon"></div>Discord activo para coordinación</li>
+      </ul>
+    </div>
+
+    <div class="form-wrap">
+      <div class="glass-form">
+        <div class="form-title">Solicitud</div>
+        <div class="form-subtitle">Ingreso al equipo · Temporada 2026</div>
+        <div id="formBody">
+          <div class="form-group">
+            <label>Nombre / Gamertag *</label>
+            <input type="text" id="fName" placeholder="Tu nombre de jugador">
+          </div>
+          <div class="form-group">
+            <label>Correo Electrónico *</label>
+            <input type="email" id="fEmail" placeholder="tu@correo.com">
+          </div>
+          <div class="form-group">
+            <label>Plataforma</label>
+            <select id="fPlat">
+              <option value="" disabled selected>Selecciona tu plataforma</option>
+              <option>PlayStation 5</option>
+              <option>Xbox Series X</option>
+              <option>PC (Steam / EA App)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>ID Online (PSN / Xbox / EA) *</label>
+            <input type="text" id="fId" placeholder="Tu ID online">
+          </div>
+          <div class="form-group">
+            <label>División en FUT Champions</label>
+            <select id="fDiv">
+              <option value="" disabled selected>Tu división</option>
+              <option>Elite</option>
+              <option>División 1</option>
+              <option>División 2</option>
+              <option>División 3</option>
+              <option>División 4+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>¿Por qué quieres unirte?</label>
+            <textarea id="fWhy" placeholder="Cuéntanos brevemente..."></textarea>
+          </div>
+          <button class="btn-submit" id="submitBtn" onclick="handleSubmit()">🔥 Enviar Solicitud</button>
+        </div>
+        <div class="success-msg" id="successMsg">
+          <div class="success-icon">🔥</div>
+          <div class="success-title">Solicitud Enviada</div>
+          <div class="success-sub">¡Bienvenido, dragón! Te contactaremos pronto.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">RED DRAGON</div>
+  <div class="footer-socials">
+    <a href="https://www.tiktok.com/@yisusoc" class="social-link" title="TikTok" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.9-.32-1.98-.23-2.81.31-.75.42-1.24 1.25-1.33 2.1-.1.7.1 1.41.53 1.98.5.73 1.36 1.13 2.24 1.1 1.49-.06 2.71-1.14 2.84-2.62.03-5.52.03-11.04.03-16.56z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/red_dragon_fc25/" class="social-link" title="Instagram" target="_blank">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+    </a>
+  </div>
+  <div class="footer-copy">© 2026 RED DRAGON FC · Todos los derechos reservados · FIFA 25 eSports Club</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';});
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>50));
+function toggleMenu(){document.getElementById('navLinks').classList.toggle('open');}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
+
+// === EMAILJS CONFIG ===
+// 1. Crea cuenta GRATIS en https://www.emailjs.com
+// 2. Add Email Service -> copia el Service ID
+// 3. Email Templates -> crea template con variables: from_name, from_email, platform, online_id, division, message
+// 4. Account -> copia tu Public Key
+const EJS_KEY      = 'TU_PUBLIC_KEY';    // <- pega aqui tu Public Key
+const EJS_SERVICE  = 'TU_SERVICE_ID';    // <- pega aqui tu Service ID
+const EJS_TEMPLATE = 'TU_TEMPLATE_ID';   // <- pega aqui tu Template ID
+
+(function(){ emailjs.init(EJS_KEY); })();
+
+function handleSubmit(){
+  const name  = document.getElementById('fName').value.trim();
+  const email = document.getElementById('fEmail').value.trim();
+  const plat  = document.getElementById('fPlat').value||'No especificada';
+  const id    = document.getElementById('fId').value.trim();
+  const div   = document.getElementById('fDiv').value||'No especificada';
+  const why   = document.getElementById('fWhy').value.trim()||'Sin comentarios';
+  if(!name||!email||!id){alert('Por favor completa los campos obligatorios (*).');return;}
+  const btn=document.getElementById('submitBtn');
+  btn.textContent='Enviando...';btn.disabled=true;
+  emailjs.send(EJS_SERVICE,EJS_TEMPLATE,{from_name:name,from_email:email,platform:plat,online_id:id,division:div,message:why})
+    .then(()=>{
+      document.getElementById('formBody').style.display='none';
+      document.getElementById('successMsg').style.display='block';
+    })
+    .catch(err=>{
+      console.error(err);
+      btn.textContent='🔥 Enviar Solicitud';btn.disabled=false;
+      alert('Error al enviar. Verifica la configuración de EmailJS.');
+    });
+}
+</script>
+</body>
+</html>
