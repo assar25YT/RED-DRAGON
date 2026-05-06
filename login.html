@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RED DRAGON FC — Acceso al Club</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;600;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#ff1a1a;--orange:#ff6500;
+  --red-glow:rgba(255,26,26,0.5);--orange-glow:rgba(255,101,0,0.4);
+  --bg:#050100;--bg2:#0c0200;
+  --glass:rgba(255,60,0,0.06);--border:rgba(255,80,0,0.12);
+  --text:#fff5ef;--muted:#7a5545;--grid:rgba(255,30,0,0.05);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;cursor:none;min-height:100vh;display:flex;flex-direction:column;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:55px 55px;pointer-events:none;z-index:0;}
+.cursor{position:fixed;width:10px;height:10px;background:var(--red);border-radius:50%;pointer-events:none;z-index:9999;box-shadow:0 0 18px var(--red-glow);transform:translate(-50%,-50%);}
+.cursor-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(255,26,26,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.12s ease;}
+.orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;animation:orbFloat 9s ease-in-out infinite;}
+.orb1{width:500px;height:500px;background:rgba(255,26,26,0.08);top:-100px;left:-100px;}
+.orb2{width:450px;height:450px;background:rgba(255,100,0,0.07);bottom:-80px;right:-80px;animation-delay:-4.5s;}
+@keyframes orbFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-40px);}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:76px;background:rgba(5,1,0,0.85);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:all 0.4s;}
+nav.scrolled{background:rgba(5,1,0,0.98);}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:6px;background:linear-gradient(90deg,var(--red),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none;line-height:1;}
+.nav-logo sub{display:block;font-size:0.5rem;letter-spacing:8px;-webkit-text-fill-color:rgba(255,100,0,0.6);margin-top:-3px;}
+.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
+.nav-links a{font-family:'Barlow Condensed',sans-serif;font-size:0.83rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--red);transition:width 0.3s;}
+.nav-links a:hover,.nav-links a.active{color:var(--text);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+.nav-cta{background:var(--red)!important;color:#000!important;padding:9px 22px!important;border-radius:2px;font-weight:700!important;box-shadow:0 0 18px var(--red-glow);}
+.nav-cta::after{display:none!important;}
+
+/* MAIN */
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:9rem 5% 5rem;position:relative;z-index:1;}
+.dragon-bg{position:fixed;font-size:clamp(18rem,40vw,38rem);opacity:0.018;line-height:1;top:50%;left:50%;transform:translate(-50%,-50%);user-select:none;pointer-events:none;animation:dpulse 6s ease-in-out infinite;z-index:0;}
+@keyframes dpulse{0%,100%{opacity:0.018;}50%{opacity:0.03;}}
+
+/* AUTH CONTAINER */
+.auth-wrap{width:100%;max-width:480px;animation:fadeUp 0.6s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
+
+/* TABS */
+.auth-tabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:0;}
+.tab-btn{flex:1;font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;background:transparent;border:none;color:var(--muted);padding:16px;cursor:pointer;transition:all 0.3s;position:relative;}
+.tab-btn::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--red),var(--orange));transition:width 0.3s;}
+.tab-btn.active{color:var(--text);}
+.tab-btn.active::after{width:100%;}
+
+/* GLASS PANEL */
+.glass-panel{background:rgba(255,255,255,0.02);border:1px solid var(--border);border-top:none;padding:2.5rem;backdrop-filter:blur(20px);position:relative;overflow:hidden;}
+.glass-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--orange));}
+
+.panel-title{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:4px;margin-bottom:0.3rem;background:linear-gradient(90deg,#fff,var(--red));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.panel-sub{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:2rem;}
+
+/* FORM */
+.form-section{display:none;}
+.form-section.active{display:block;}
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-family:'Barlow Condensed',sans-serif;font-size:0.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:6px;}
+.form-group input{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:0.95rem;padding:12px 14px;border-radius:2px;outline:none;transition:all 0.3s;}
+.form-group input:focus{border-color:var(--red);background:rgba(255,26,26,0.04);box-shadow:0 0 16px rgba(255,26,26,0.1);}
+
+.input-wrap{position:relative;}
+.toggle-pw{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:1rem;padding:4px;}
+
+/* SUBMIT BTN */
+.btn-submit{width:100%;font-family:'Barlow Condensed',sans-serif;font-size:0.88rem;font-weight:700;letter-spacing:4px;text-transform:uppercase;background:linear-gradient(90deg,var(--red),var(--orange));color:#000;border:none;padding:16px;border-radius:2px;cursor:pointer;box-shadow:0 0 28px rgba(255,26,26,0.22);transition:all 0.3s;margin-top:0.3rem;}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 0 44px rgba(255,26,26,0.38);filter:brightness(1.1);}
+
+footer{border-top:1px solid var(--border);padding:3.5rem 5%;display:flex;flex-direction:column;align-items:center;gap:2rem;background:rgba(5,1,0,0.7);}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:8px;background:linear-gradient(90deg,var(--red),var(--orange));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+
+@media(max-width:900px){
+  .nav-links{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="dragon-bg">🐉</div>
+
+<nav id="mainNav">
+  <a href="index.html" class="nav-logo">RED DRAGON<sub>FC25 CLUB</sub></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="jugadores.html">Jugadores</a></li>
+    <li><a href="login.html" class="active">Mi Cuenta</a></li>
+    <li><a href="unete.html" class="nav-cta">Únete</a></li>
+  </ul>
+</nav>
+
+<div class="main">
+  <div class="auth-wrap">
+    <div class="auth-tabs">
+      <button class="tab-btn active" id="tabLogin" onclick="switchTab('login')">Iniciar Sesión</button>
+      <button class="tab-btn" id="tabRegister" onclick="switchTab('register')">Registrarse</button>
+    </div>
+
+    <div class="glass-panel">
+      <!-- ===== LOGIN FORM ===== -->
+      <form class="form-section active" id="loginSection" action="login.php" method="POST">
+        <div class="panel-title">Bienvenido</div>
+        <div class="panel-sub">Ingresa tus credenciales del club</div>
+
+        <div class="form-group">
+          <label>Correo Electrónico</label>
+          <input type="email" name="email" placeholder="tu@correo.com" required>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <div class="input-wrap">
+            <input type="password" id="lPass" name="password" placeholder="••••••••" required>
+            <button type="button" class="toggle-pw" onclick="togglePw('lPass',this)">👁</button>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">🔥 Entrar al Club</button>
+      </form>
+
+      <!-- ===== REGISTER FORM ===== -->
+      <form class="form-section" id="registerSection" action="registro.php" method="POST">
+        <div class="panel-title">Crear Cuenta</div>
+        <div class="panel-sub">Únete a la élite del FC25</div>
+
+        <div class="form-group">
+          <label>Nombre / Gamertag *</label>
+          <input type="text" name="nombre" placeholder="Tu nombre o alias" required>
+        </div>
+        <div class="form-group">
+          <label>Correo Electrónico *</label>
+          <input type="email" name="email" placeholder="tu@correo.com" required>
+        </div>
+        <div class="form-group">
+          <label>Contraseña *</label>
+          <div class="input-wrap">
+            <input type="password" id="rPass" name="password" placeholder="Mínimo 8 caracteres" required>
+            <button type="button" class="toggle-pw" onclick="togglePw('rPass',this)">👁</button>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">⚡ Finalizar Registro</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">RED DRAGON</div>
+  <div style="font-family:'Barlow Condensed',sans-serif; font-size:0.7rem; color:var(--muted);">© 2026 RED DRAGON FC · FC25 CLUB</div>
+</footer>
+
+<script>
+/* CURSOR LOGIC */
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+document.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px';
+  ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';
+});
+
+/* TAB SWITCHING */
+function switchTab(tab){
+  document.getElementById('loginSection').classList.remove('active');
+  document.getElementById('registerSection').classList.remove('active');
+  document.getElementById('tabLogin').classList.remove('active');
+  document.getElementById('tabRegister').classList.remove('active');
+
+  if(tab==='login'){
+    document.getElementById('loginSection').classList.add('active');
+    document.getElementById('tabLogin').classList.add('active');
+  } else {
+    document.getElementById('registerSection').classList.add('active');
+    document.getElementById('tabRegister').classList.add('active');
+  }
+}
+
+/* PASSWORD TOGGLE */
+function togglePw(id,btn){
+  const inp=document.getElementById(id);
+  if(inp.type==='password'){inp.type='text';btn.textContent='🙈';}
+  else{inp.type='password';btn.textContent='👁';}
+}
+
+window.addEventListener('scroll',()=>document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>50));
+</script>
+</body>
+</html>
